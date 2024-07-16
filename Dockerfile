@@ -25,8 +25,5 @@ COPY src .
 
 EXPOSE 80
 
-COPY entrypoint.sh /usr/local/bin/entrypoint.sh
-RUN chmod +x /usr/local/bin/entrypoint.sh
-
-CMD [ "bash /usr/local/bin/entrypoint.sh" ]
-
+COPY docker-php-entrypoint.sh /usr/local/bin/docker-php-entrypoint.sh
+RUN chmod +x /usr/local/bin/docker-php-entrypoint.sh
