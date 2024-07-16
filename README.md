@@ -14,8 +14,8 @@ Este proyecto utiliza Docker y Docker Compose para levantar un entorno de desarr
 Clona el repositorio de tu proyecto en tu máquina local.
 
 ```sh
-git clone https://github.com/tu_usuario/tu_proyecto.git
-cd tu_proyecto
+git clone https://github.com/matias-alejandro/giphy.git
+cd giphy
 ```
 
 ### 2. Construir y Levantar los Contenedores
