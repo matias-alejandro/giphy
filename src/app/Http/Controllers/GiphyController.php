@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\GiphyService;
 use App\Models\FavoriteGif;
+use Illuminate\Support\Facades\Log;
 
 class GiphyController extends Controller
 {
@@ -58,8 +59,9 @@ class GiphyController extends Controller
 
             return response()->noContent();
         }
-        catch (\Throwable $th) {
-            return response()->json(['error' => $th->getMessage()]);
+        catch (\Exception $e) {
+            Log::error('Error adding favorite gif: ' . $e->getMessage());
+            return response()->json(['error' => 'Internal Server Error'], 500);
         }
     }
 }

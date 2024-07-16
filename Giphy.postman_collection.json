@@ -1,0 +1,254 @@
+{
+	"info": {
+		"_postman_id": "dfffafd4-42c2-4897-b4a3-75a058024f4b",
+		"name": "Giphy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36979561"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var token = pm.response.json();\r",
+							"\r",
+							"if (token) {\r",
+							"    pm.environment.set(\"token\", token);\r",
+							"} else {\r",
+							"    console.error(\"Token no encontrado en la respuesta.\");\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/login?email=user@example.com&password=1234",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"login"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "user@example.com"
+						},
+						{
+							"key": "password",
+							"value": "1234"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar gif",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let token = pm.environment.get(\"token\");\r",
+							"\r",
+							"if (token) {\r",
+							"    pm.request.headers.add({\r",
+							"        key: \"Authorization\",\r",
+							"        value: \"Bearer \" + token\r",
+							"    });\r",
+							"} else {\r",
+							"    console.error(\"Token no está definido en las variables del entorno.\");\r",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/api/gifs/?query=dog",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"gifs",
+						""
+					],
+					"query": [
+						{
+							"key": "query",
+							"value": "dog"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar gif por ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let token = pm.environment.get(\"token\");\r",
+							"console.log(token);\r",
+							"if (token) {\r",
+							"    pm.request.headers.add({\r",
+							"        key: \"Authorization\",\r",
+							"        value: \"Bearer \" + token\r",
+							"    });\r",
+							"} else {\r",
+							"    console.error(\"Token no está definido en las variables del entorno.\");\r",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/api/gifs/3o7527pa7qs9kCG78A",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"gifs",
+						"3o7527pa7qs9kCG78A"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar favorito",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let token = pm.environment.get(\"token\");\r",
+							"\r",
+							"if (token) {\r",
+							"    pm.request.headers.add({\r",
+							"        key: \"Authorization\",\r",
+							"        value: \"Bearer \" + token\r",
+							"    });\r",
+							"} else {\r",
+							"    console.error(\"Token no está definido en las variables del entorno.\");\r",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/api/gifs/favorite?user_id=1&alias=gif favorito&gif_id=3o7527pa7qs9kCG78A",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"gifs",
+						"favorite"
+					],
+					"query": [
+						{
+							"key": "user_id",
+							"value": "1"
+						},
+						{
+							"key": "alias",
+							"value": "gif favorito"
+						},
+						{
+							"key": "gif_id",
+							"value": "3o7527pa7qs9kCG78A"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
