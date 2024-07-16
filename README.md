@@ -18,26 +18,7 @@ git clone https://github.com/tu_usuario/tu_proyecto.git
 cd tu_proyecto
 ```
 
-### 2. Configurar el Archivo .env
-
-Dentro de la carpeta src opia el archivo de ejemplo .env.example a .env y ajusta los valores según sea necesario.
-
-```sh
-cp .env.example .env
-```
-
-Asegúrate de que las siguientes variables estén correctamente configuradas en el archivo .env:
-
-```env
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=laravel
-DB_USERNAME=root
-DB_PASSWORD=password
-```
-
-### 3. Construir y Levantar los Contenedores
+### 2. Construir y Levantar los Contenedores
 Usa Docker Compose para construir y levantar los contenedores del proyecto.
 
 ```sh
@@ -46,10 +27,10 @@ docker compose up --build
 
 Esto construirá las imágenes de Docker para los servicios definidos en docker compose.yml y levantará los contenedores correspondientes.
 
-### 4. Acceder a la Aplicación
+### 3. Acceder a la Aplicación
 Una vez que los contenedores estén levantados, puedes acceder a la aplicación en la url http://localhost:8000. (configurado en ese puerto para poder ejecutar las pruebas desde postman)
 
-### 5. Ejecutar Comandos de Artisan
+### 4. Ejecutar Comandos de Artisan
 Para ejecutar comandos de Artisan dentro del contenedor app, usa el siguiente comando:
 
 ```sh

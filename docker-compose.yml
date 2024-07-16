@@ -15,6 +15,13 @@ services:
         build: .
         ports:
             - "8000:80"
+        environment:
+            - DB_CONNECTION=mysql
+            - DB_HOST=mariadb
+            - DB_PORT=3306
+            - DB_DATABASE=laravel
+            - DB_USERNAME=root
+            - DB_PASSWORD=password
         volumes:
             - ./src:/app
         networks:
